@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>منصة التوجيه الطلابي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Tahoma", system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: #f3f4f6;
+      color: #111827;
+      padding: 20px;
+    }
+
+    .app {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 22px 22px 26px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    header .sub {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sidebar {
+      background: #f9fafb;
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .sidebar-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .sidebar-desc {
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav-item {
+      border-radius: 12px;
+      padding: 9px 10px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      cursor: pointer;
+      text-align: right;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item:hover {
+      border-color: #2563eb;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .nav-item.active {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: #ffffff;
+    }
+
+    .nav-item-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .nav-item-desc {
+      font-size: 11px;
+      opacity: 0.9;
+    }
+
+    .content {
+      background: #f9fafb;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      padding: 12px;
+      min-height: 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .content-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 4px 6px;
+      border-bottom: 1px dashed #e5e7eb;
+    }
+
+    .content-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .content-helper {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .open-link-btn {
+      border-radius: 999px;
+      padding: 6px 12px;
+      border: none;
+      background: #2563eb;
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .viewer {
+      flex: 1;
+      margin-top: 4px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 430px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <img src="logo-fatimah-hazzazi.png" alt="شعار أ. فاطمة هزازي" style="height:80px; margin:0 auto 10px; display:block;" />
+      <h1>منصة التوجيه الطلابي</h1>
+      <p>منصة تجمع النماذج الإلكترونية الخاصة بالتوجيه والإرشاد الطلابي في مكان واحد.</p>
+      <div class="sub">دراسة الحالات والخطط العلاجية + قياس السلوك + قواعد السلوك والمواظبة</div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-title">النماذج المتاحة في المنصة</div>
+        <div class="sidebar-desc">اضغط/ي على النموذج لفتحه داخل المنصة أو في نافذة جديدة.</div>
+
+        <div class="nav-list">
+          <button class="nav-item active" data-type="guidance">
+            <div class="nav-item-title">نظام التوجيه الطلابي</div>
+            <div class="nav-item-desc">دراسة حالة، خطة علاجية، تقارير شهرية وختامية.</div>
+          </button>
+
+          <button class="nav-item" data-type="behaviorMeasure">
+            <div class="nav-item-title">استمارة قياس السلوك</div>
+            <div class="nav-item-desc">استمارة إلكترونية لتسهيل عملية رصد السلوك.</div>
+          </button>
+
+          <button class="nav-item" data-type="behaviorSimple">
+            <div class="nav-item-title">جدول مبسط لقياس السلوك</div>
+            <div class="nav-item-desc">جدول مبسط يساعد في قياس ومتابعة السلوك.</div>
+          </button>
+
+          <button class="nav-item" data-type="rules">
+            <div class="nav-item-title">قواعد السلوك والمواظبة</div>
+            <div class="nav-item-desc">توضيح قواعد السلوك والمواظبة بطريقة تقنية مبتكرة.</div>
+          </button>
+        </div>
+      </aside>
+
+      <section class="content">
+        <div class="content-header">
+          <div>
+            <div class="content-title" id="contentTitle">
+              نظام التوجيه الطلابي
+            </div>
+            <div class="content-helper" id="contentHelper">
+              النموذج يظهر بالأسفل داخل المنصة، ويمكن فتحه أيضًا في تبويب جديد.
+            </div>
+          </div>
+          <button class="open-link-btn" id="openInNewTabBtn">
+            فتح في تبويب جديد
+          </button>
+        </div>
+
+        <div class="viewer">
+          <iframe id="formFrame" src="https://123456789fh.github.io/Guidance/"></iframe>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const links = {
+      guidance: "https://123456789fh.github.io/Guidance/",
+      behaviorMeasure: "https://123456789fh.github.io/Behavior-schedule1/",
+      behaviorSimple: "https://123456789fh.github.io/Behavior-schedule-/",
+      rules: "https://123456789fh.github.io/Code-of-Conduct-and-Attendance/",
+    };
+
+    const navItems = document.querySelectorAll(".nav-item");
+    const frame = document.getElementById("formFrame");
+    const contentTitle = document.getElementById("contentTitle");
+    const contentHelper = document.getElementById("contentHelper");
+    const openInNewTabBtn = document.getElementById("openInNewTabBtn");
+
+    let currentType = "guidance";
+
+    function setActive(type) {
+      currentType = type;
+
+      navItems.forEach((btn) => {
+        btn.classList.toggle("active", btn.getAttribute("data-type") === type);
+      });
+
+      switch (type) {
+        case "guidance":
+          contentTitle.textContent = "نظام التوجيه الطلابي";
+          contentHelper.textContent =
+            "النموذج مخصص لتوثيق دراسة الحالة والخطة العلاجية والتقارير.";
+          break;
+        case "behaviorMeasure":
+          contentTitle.textContent = "استمارة قياس السلوك";
+          contentHelper.textContent =
+            "استمارة إلكترونية لتسهيل عملية رصد السلوك للطلاب والطالبات.";
+          break;
+        case "behaviorSimple":
+          contentTitle.textContent = "جدول مبسط لقياس السلوك";
+          contentHelper.textContent =
+            "جدول مبسط يساعد في قياس ومتابعة السلوك بدرجة أو رمز.";
+          break;
+        case "rules":
+          contentTitle.textContent = "قواعد السلوك والمواظبة";
+          contentHelper.textContent =
+            "توضيح قواعد السلوك والمواظبة بطريقة تقنية مبتكرة يسهل فهمها للطلاب والطالبات.";
+          break;
+      }
+
+      const url = links[type];
+      if (url) {
+        frame.src = url;
+      }
+    }
+
+    navItems.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const type = btn.getAttribute("data-type");
+        setActive(type);
+      });
+    });
+
+    openInNewTabBtn.addEventListener("click", () => {
+      const url = links[currentType];
+      if (url) {
+        window.open(url, "_blank");
+      }
+    });
+  </script>
+</body>
+</html>
